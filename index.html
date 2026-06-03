@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Sunset di Kebun 2026</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Baloo 2',cursive;
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+background:#f4f4f4;
+overflow-x:hidden;
+}
+
+/* ==========================
+HEADER
+========================== */
+
+.hero{
+position:relative;
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:30px;
+overflow:hidden;
+}
+
+.hero::before{
+content:"";
+position:absolute;
+inset:0;
+background:url('background.jpg') center center/cover no-repeat;
+z-index:1;
+}
+
+.hero::after{
+content:"";
+position:absolute;
+inset:0;
+background:rgba(0,160,255,.25);
+z-index:2;
+}
+
+.hero-content{
+position:relative;
+z-index:3;
+text-align:center;
+width:100%;
+max-width:1200px;
+}
+
+.main-logo{
+width:min(90vw,700px);
+margin:auto;
+display:block;
+filter:drop-shadow(0 10px 20px rgba(0,0,0,.4));
+}
+
+.city-wrapper{
+margin-top:60px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:40px;
+align-items:center;
+justify-content:center;
+}
+
+.city-card{
+display:block;
+text-decoration:none;
+transition:.3s;
+}
+
+.city-card:hover{
+transform:translateY(-10px) scale(1.05);
+}
+
+.city-card img{
+width:100%;
+max-width:300px;
+display:block;
+margin:auto;
+filter:drop-shadow(0 10px 15px rgba(0,0,0,.35));
+}
+
+/* ==========================
+MENU BUTTON
+========================== */
+
+.menu-btn{
+position:fixed;
+top:20px;
+left:20px;
+z-index:999;
+width:70px;
+height:70px;
+border:none;
+cursor:pointer;
+background:#d4edf8;
+border-radius:20px;
+box-shadow:0 10px 20px rgba(0,0,0,.15);
+}
+
+.menu-btn span{
+display:block;
+width:30px;
+height:4px;
+background:#ff6200;
+margin:6px auto;
+border-radius:50px;
+}
+
+.sidebar{
+position:fixed;
+left:-280px;
+top:0;
+width:280px;
+height:100%;
+background:white;
+z-index:998;
+padding:100px 25px;
+transition:.4s;
+box-shadow:0 0 30px rgba(0,0,0,.15);
+}
+
+.sidebar.active{
+left:0;
+}
+
+.sidebar a{
+display:block;
+text-decoration:none;
+color:#333;
+font-size:22px;
+font-weight:700;
+margin-bottom:20px;
+}
+
+/* ==========================
+SECTION
+========================== */
+
+.section{
+padding:90px 20px;
+background:white;
+text-align:center;
+}
+
+.section-title{
+font-size:40px;
+font-weight:800;
+margin-bottom:40px;
+color:#222;
+}
+
+.logo-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+gap:30px;
+max-width:1200px;
+margin:auto;
+}
+
+.logo-box{
+background:#fafafa;
+padding:25px;
+border-radius:20px;
+box-shadow:0 5px 15px rgba(0,0,0,.08);
+}
+
+.logo-box img{
+max-width:100%;
+height:90px;
+object-fit:contain;
+}
+
+/* ==========================
+CONTACT
+========================== */
+
+.contact-section{
+padding:90px 20px;
+background:#f8f8f8;
+text-align:center;
+}
+
+.contact-btn{
+display:inline-block;
+padding:18px 50px;
+background:#12d0c4;
+color:white;
+font-size:28px;
+font-weight:700;
+text-decoration:none;
+border-radius:999px;
+box-shadow:0 10px 20px rgba(0,0,0,.15);
+transition:.3s;
+}
+
+.contact-btn:hover{
+transform:translateY(-5px);
+}
+
+.contact-text{
+margin-top:20px;
+font-size:30px;
+color:#19aef5;
+font-weight:700;
+}
+
+/* ==========================
+FOOTER
+========================== */
+
+.footer{
+background:white;
+padding:80px 20px;
+}
+
+.footer-grid{
+max-width:1200px;
+margin:auto;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:40px;
+}
+
+.footer-logo{
+width:220px;
+}
+
+.footer-menu a{
+display:block;
+text-decoration:none;
+color:#18a8ef;
+font-size:24px;
+font-weight:700;
+margin-bottom:15px;
+}
+
+.social{
+display:flex;
+gap:15px;
+margin-top:20px;
+}
+
+.social a{
+width:50px;
+height:50px;
+background:#18a8ef;
+border-radius:50%;
+display:flex;
+justify-content:center;
+align-items:center;
+color:white;
+font-size:22px;
+text-decoration:none;
+}
+
+.copyright{
+text-align:center;
+margin-top:60px;
+font-size:22px;
+color:#18a8ef;
+font-weight:700;
+}
+
+@media(max-width:768px){
+
+.main-logo{
+width:95%;
+}
+
+.section-title{
+font-size:30px;
+}
+
+.contact-text{
+font-size:24px;
+}
+
+}
+
+</style>
+</head>
+<body>
+
+<button class="menu-btn" id="menuBtn">
+<span></span>
+<span></span>
+<span></span>
+</button>
+
+<div class="sidebar" id="sidebar">
+
+<a href="#">Home</a>
+<a href="#">Program</a>
+<a href="#">Line-Up</a>
+<a href="#">Buy Tickets</a>
+<a href="#">Information</a>
+<a href="#">Gallery</a>
+<a href="#">Sunset Store</a>
+<a href="#">News</a>
+
+</div>
+
+<section class="hero">
+
+<div class="hero-content">
+
+<img src="logo-sunset.png" class="main-logo" alt="Sunset di Kebun">
+
+<div class="city-wrapper">
+
+<a class="city-card"
+href="https://onlinetiketdigital.github.io/FROM-BOGOR/">
+
+<img src="bogor.png" alt="Bogor">
+
+</a>
+
+<a class="city-card"
+href="https://onlinetiketdigital.github.io/From-JAKARTA-/">
+
+<img src="jakarta.png" alt="Jakarta">
+
+</a>
+
+<a class="city-card"
+href="https://onlinetiketdigital.github.io/FROM-BALI/">
+
+<img src="bali.png" alt="Bali">
+
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="section">
+
+<h2 class="section-title">
+Presented By
+</h2>
+
+<div class="logo-grid">
+
+<div class="logo-box">
+<img src="presentedby.png" alt="">
+</div>
+
+</div>
+
+</section>
+
+<section class="section">
+
+<h2 class="section-title">
+Official Banking Partner
+</h2>
+
+<div class="logo-grid">
+
+<div class="logo-box">
+<img src="mandiri.png" alt="">
+</div>
+
+</div>
+
+</section>
+
+<section class="section">
+
+<h2 class="section-title">
+Sponsored By
+</h2>
+
+<div class="logo-grid">
+
+<div class="logo-box"><img src="indomie.png"></div>
+<div class="logo-box"><img src="popmie.png"></div>
+<div class="logo-box"><img src="chitato.png"></div>
+<div class="logo-box"><img src="sambalindofood.png"></div>
+<div class="logo-box"><img src="kopiabc.png"></div>
+
+</div>
+
+</section>
+
+<section class="section">
+
+<h2 class="section-title">
+Supported By
+</h2>
+
+<div class="logo-grid">
+
+<div class="logo-box"><img src="wonderfulindonesia.png"></div>
+<div class="logo-box"><img src="amaris.png"></div>
+<div class="logo-box"><img src="photria.png"></div>
+<div class="logo-box"><img src="kopikenangan.png"></div>
+<div class="logo-box"><img src="ionnetwork.png"></div>
+<div class="logo-box"><img src="yayasanastra.png"></div>
+<div class="logo-box"><img src="tarobun.png"></div>
+
+</div>
+
+</section>
+
+<section class="contact-section">
+
+<a href="https://wa.me/6281234567890" class="contact-btn">
+Contact Us
+</a>
+
+<div class="contact-text">
+For sponsorship opportunities.
+</div>
+
+</section>
+
+<footer class="footer">
+
+<div class="footer-grid">
+
+<div>
+
+<img src="logo-sunset.png"
+class="footer-logo">
+
+<div class="social">
+
+<a href="#">IG</a>
+<a href="#">YT</a>
+<a href="#">X</a>
+<a href="#">SP</a>
+
+</div>
+
+</div>
+
+<div class="footer-menu">
+
+<a href="#">Home</a>
+<a href="#">Line-Up</a>
+<a href="#">Buy Tickets</a>
+<a href="#">Sunset Store</a>
+
+</div>
+
+<div class="footer-menu">
+
+<a href="#">Program</a>
+<a href="#">Information</a>
+<a href="#">Gallery</a>
+<a href="#">News</a>
+
+</div>
+
+</div>
+
+<div class="copyright">
+© Copyright 2026 Sunset di Kebun All Rights Reserved
+</div>
+
+</footer>
+
+<script>
+
+const menuBtn =
+document.getElementById("menuBtn");
+
+const sidebar =
+document.getElementById("sidebar");
+
+menuBtn.addEventListener("click",()=>{
+
+sidebar.classList.toggle("active");
+
+});
+
+document.addEventListener("click",(e)=>{
+
+if(
+!sidebar.contains(e.target)
+&&
+!menuBtn.contains(e.target)
+){
+sidebar.classList.remove("active");
+}
+
+});
+
+</script>
+
+</body>
+</html>
